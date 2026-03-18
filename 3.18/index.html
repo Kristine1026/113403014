@@ -3,18 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>網頁作業 - 程式碼範例</title>
+    <style>
+        /* 設定程式碼區塊的外觀 */
+        pre {
+            background-color: #f4f4f4; /* 淺灰色背景 */
+            border: 1px solid #ccc;    /* 灰色邊框 */
+            border-radius: 4px;        /* 圓角（可選） */
+            padding: 15px;             /* 內距，讓文字不貼邊 */
+            overflow-x: auto;          /* 如果程式碼太長，自動顯示水平捲軸 */
+            line-height: 1.5;          /* 行高，增加易讀性 */
+        }
+
+        code {
+            font-family: "Courier New", Courier, monospace; /* 強制使用等寬字體 */
+            color: #333;
+        }
+
+        .label {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: block;
+        }
+    </style>
 </head>
 <body>
 
-    <p>Code example:</p>
+    <p class="label">Code example:</p>
 
-    <pre><code>
-var person = {
+    <pre><code>var person = {
     firstName: "可筠",
     lastName : "廖",
     studentId: "113403014"
-}
-    </code></pre>
+}</code></pre>
 
 </body>
 </html>
