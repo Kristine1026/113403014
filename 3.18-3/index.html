@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>作業 1 - Canvas 繪圖</title>
+    <style>
+        /* 設定畫布的邊框，方便我們確認區域 */
+        #myCanvas {
+            border: 1px solid #ccc;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="myCanvas" width="400" height="250"></canvas>
+
+    <script>
+        // 2. 獲取 Canvas 物件和繪圖上下文 (Context)
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // --- A. 繪製藍色矩形 (在下方) ---
+        // 設定填充顏色為藍色
+        ctx.fillStyle = "blue";
+        // 繪製實心矩形：fillRect(x, y, width, height)
+        ctx.fillRect(50, 50, 150, 150);
+        
+        // 設定邊框顏色為黑色，並繪製邊框
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 2; // 邊框寬度
+        ctx.strokeRect(50, 50, 150, 150);
+
+
+        // --- B. 繪製黃色圓形 (在上方，造成重疊效果) ---
+        // 開始繪製路徑
+        ctx.beginPath();
+        
+        // 繪製圓弧：arc(x, y, radius, startAngle, endAngle)
+        // x=200, y=125 是圓心，60 是半徑。Math.PI * 2 代表畫一個完整的圓。
+        ctx.arc(200, 125, 60, 0, Math.PI * 2);
+        
+        // 設定填充顏色為黃色並填充
+        ctx.fillStyle = "yellow";
+        ctx.fill();
+        
+        // 設定圓形邊框為紅色並繪製
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 5; // 較粗的紅色邊框
+        ctx.stroke();
+        
+        // 結束路徑
+        ctx.closePath();
+
+    </script>
+
+</body>
+</html>
