@@ -2,36 +2,57 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>作業 1 - 表單建立</title>
+    <title>作業 1 - 表單實作</title>
     <style>
-        /* 簡單的排版，讓它看起來像圖片一樣換行 */
-        form {
-            line-height: 2;
+        /* 讓排版更接近圖片中的樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-size: 1.2em;
         }
         input[type="text"] {
-            display: block;
-            margin-bottom: 15px;
             width: 250px;
+            padding: 5px;
+            font-size: 1em;
         }
-        .button-group {
-            margin-top: 10px;
+        .buttons {
+            margin-top: 20px;
+        }
+        input[type="submit"], input[type="reset"] {
+            padding: 5px 15px;
+            font-size: 1em;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
 
     <form>
-        <label for="fname">First name:</label>
-        <input type="text" id="fname" name="fname" value="可筠">
+        <div class="form-group">
+            <label for="fname">First name:</label>
+            <input type="text" id="fname" name="fname" value="Your first name">
+        </div>
 
-        <label for="lname">Last name:</label>
-        <input type="text" id="lname" name="lname" value="廖">
+        <div class="form-group">
+            <label for="lname">Last name:</label>
+            <input type="text" id="lname" name="lname" value="Your last name">
+        </div>
 
-        <label for="sid">Student ID:</label>
-        <input type="text" id="sid" name="sid" value="113403014">
+        <div class="form-group">
+            <label for="sid">Student ID:</label>
+            <input type="text" id="sid" name="sid" value="Your student ID">
+        </div>
 
-        <div class="button-group">
+        <div class="buttons">
             <input type="submit" value="Submit">
+            
             <input type="reset" value="重設">
         </div>
     </form>
