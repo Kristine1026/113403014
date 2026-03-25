@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heading Styles Exercise</title>
+    <style>
+        body {
+            font-family: serif;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+
+        /* Container to mimic the white box in the image */
+        .container {
+            background-color: white;
+            padding: 40px;
+            width: fit-content;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            border: 1px solid #ddd;
+        }
+
+        /* Heading 1: Overline, Bold, and Pink Drop Shadow */
+        h1 {
+            font-size: 3em;
+            text-decoration: overline;
+            text-decoration-thickness: 3px;
+            margin-bottom: 30px;
+            text-shadow: 4px 4px 0px pink;
+            display: inline-block;
+        }
+
+        /* Heading 2: Italic, Yellow Box Border with Inset Shadow */
+        h2 {
+            font-style: italic;
+            border: 3px solid yellow;
+            padding: 5px 10px;
+            width: 90%;
+            /* Using box-shadow to create that "double/recessed" look */
+            box-shadow: inset 1px 1px 2px black, 1px 1px 1px black;
+            font-weight: normal;
+            margin-bottom: 40px;
+        }
+
+        /* Heading 3: Right-aligned, Bold, Underlined */
+        h3 {
+            text-align: right;
+            text-decoration: underline;
+            font-weight: bold;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>This is heading 1</h1>
+        
+        <h2>This is heading 2</h2>
+        
+        <h3>This is heading 3</h3>
+    </div>
+
+</body>
+</html>
