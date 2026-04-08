@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>網頁作業示範</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0; /* 外層灰色背景 */
+        }
+
+        /* 白色容器 */
+        .main-container {
+            background-color: white;
+            padding: 40px;
+            border: 1px solid #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            min-height: 400px;
+            width: 90%;
+            margin: auto;
+        }
+
+        /* 表格樣式 */
+        table {
+            border-collapse: collapse;
+            width: 300px;
+            border: 1px solid #333;
+        }
+
+        th, td {
+            border: 1px solid #333;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        /* 表頭灰色背景 */
+        th {
+            background-color: #666666;
+            color: white;
+        }
+
+        /* 黃色行 */
+        .bg-yellow {
+            background-color: yellow;
+        }
+
+        /* 白色行 */
+        .bg-white {
+            background-color: white;
+        }
+
+        /* 固定位置的 Div 區塊 */
+        .fixed-box {
+            position: fixed;
+            top: 50px;     /* 距離頂部 */
+            right: 100px;  /* 距離右側 */
+            width: 150px;
+            height: 150px;
+            border: 3px solid #70AD47; /* 綠色邊框 */
+            padding: 10px;
+            background-color: white;
+            font-size: 18px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-container">
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-yellow">
+                    <td>1</td>
+                    <td>1</td>
+                </tr>
+                <tr class="bg-white">
+                    <td>2</td>
+                    <td>2</td>
+                </tr>
+                <tr class="bg-yellow">
+                    <td>3</td>
+                    <td>3</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="fixed-box">
+            This div element has position: fixed;
+        </div>
+
+    </div>
+
+</body>
+</html>
