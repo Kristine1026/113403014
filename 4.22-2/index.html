@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>響應式佈局作業</title>
+    <style>
+        /* 基礎設定 */
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #58b2f1; /* 藍色背景 */
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 800px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* 區塊通用樣式 */
+        .section {
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        /* 綠色頂部 */
+        .header {
+            background-color: #a8d64d;
+            height: 150px;
+            width: 100%;
+        }
+
+        /* 中間藍綠色區塊容器 */
+        .main-content {
+            display: flex;
+            gap: 10px;
+            flex-direction: row; /* 預設橫排 (b圖) */
+        }
+
+        .content-box {
+            background-color: #00bcd4;
+            height: 150px;
+            flex: 1; /* 平分寬度 */
+        }
+
+        /* 底部灰色區塊容器 */
+        .footer {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .footer-box {
+            background-color: #eceff1;
+            height: 60px;
+            flex: 1;
+        }
+
+        /* --- 核心：媒體查詢 --- */
+        /* 當寬度小於 480px 時切換為 (a圖) 佈局 */
+        @media (max-width: 480px) {
+            .main-content {
+                flex-direction: column; /* 變為直排 */
+            }
+
+            .content-box {
+                height: 80px; /* 直排時縮短高度以符合比例 */
+            }
+
+            /* 底部灰色塊改為 2x2 或是維持比例 */
+            .footer {
+                flex-wrap: wrap; 
+            }
+            .footer-box {
+                flex: 1 1 calc(50% - 5px); /* 一列兩個 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="section header"></div>
+
+        <div class="main-content">
+            <div class="section content-box"></div>
+            <div class="section content-box"></div>
+            <div class="section content-box"></div>
+        </div>
+
+        <div class="footer">
+            <div class="section footer-box"></div>
+            <div class="section footer-box"></div>
+            <div class="section footer-box"></div>
+            <div class="section footer-box"></div>
+        </div>
+    </div>
+
+</body>
+</html>
