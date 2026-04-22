@@ -3,44 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NCU Web Exercise - Button Interaction</title>
+    <title>NCU Web Development - Button Interaction</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
     <style>
+        /* 基礎版面設定 */
         body {
             font-family: 'Roboto', sans-serif;
             background-color: #f6f6f6;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             padding-top: 50px;
+            margin: 0;
         }
 
-        /* 預覽圖片容器 */
-        .preview-container {
-            width: 496px; /* 參考設計稿標註寬度 */
-            background: white;
+        /* 預覽區塊容器 (對應中間 496 寬度的區塊) */
+        .container {
+            width: 496px;
+            background-color: #ffffff;
             border: 1px solid #ddd;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .main-image {
+        /* 上方預覽圖 */
+        .preview-area {
+            position: relative;
+            width: 496px;
+            height: 240px;
+            background: #eee;
+        }
+
+        .preview-area img {
             width: 100%;
-            height: 240px; /* 標註 450x240 */
+            height: 100%;
             object-fit: cover;
-            display: block;
         }
 
-        /* 按鈕工具列 */
-        .toolbar {
-            display: flex;
-            justify-content: flex-end;
-            padding: 5px 10px;
-            background: #fff;
+        /* 按鈕容器：放置在圖片右上角 */
+        .button-overlay {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 10;
         }
 
-        /* 核心按鈕樣式 (h22/R8) */
+        /* 核心按鈕規格：h22 / R8 */
         .spec-button {
             height: 22px;
             border-radius: 8px;
@@ -48,60 +56,74 @@
             border: 1px solid #2f2f2f;
             font-size: 13px;
             color: #2f2f2f;
+            font-weight: 400;
+            padding: 0 10px;
             cursor: pointer;
-            padding: 0 12px;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            transition: all 0.2s;
+            outline: none;
+            transition: background 0.2s;
         }
 
         .spec-button:hover {
             background-color: #f0f0f0;
         }
 
-        /* 資訊面板 - 初始狀態為隱藏 */
+        /* 下方詳細資訊面板 (對應右下角圖片狀態) */
         .info-panel {
-            max-height: 0;
+            max-height: 0; /* 預設隱藏 */
             overflow: hidden;
-            transition: max-height 0.3s ease-out;
+            transition: max-height 0.4s ease-in-out;
             background: #ffffff;
         }
 
-        /* 當 active 時展開 */
-        .info-panel.active {
-            max-height: 200px; /* 展開高度 */
+        /* 當面板啟動時的高度 */
+        .info-panel.show {
+            max-height: 300px;
         }
 
-        .info-content {
-            padding: 10px 15px;
-            font-size: 12px;
-            color: #707070; /* 參考設計稿 Font style 顏色 */
+        .info-list {
+            padding: 10px 20px;
             border-top: 1px solid #eaeaea;
         }
 
+        /* 綠色條狀資訊樣式 */
         .info-item {
-            background: #90ee90; /* 模仿設計稿中的綠色條狀樣式 */
-            margin-bottom: 4px;
-            padding: 2px 8px;
-            color: #333;
+            background-color: #90ee90; /* 模擬設計稿中的淺綠色背景 */
+            color: #2f2f2f;
+            font-size: 12px;
+            padding: 4px 8px;
+            margin-bottom: 5px;
+            border-radius: 2px;
+        }
+
+        /* 捲軸模擬 (如圖標註 Scrolling bar) */
+        .scroll-container {
+            max-height: 150px;
+            overflow-y: auto;
         }
     </style>
 </head>
 <body>
 
-    <div class="preview-container">
-        <img src="https://picsum.photos/496/240" alt="Preview" class="main-image">
-        
-        <div class="toolbar">
-            <button class="spec-button" id="toggleBtn">查看資訊</button>
+    <div class="container">
+        <div class="preview-area">
+            <img src="https://picsum.photos/496/240" alt="Landscape Preview">
+            
+            <div class="button-overlay">
+                <button class="spec-button" id="toggleBtn">查看資訊</button>
+            </div>
         </div>
 
         <div class="info-panel" id="infoPanel">
-            <div class="info-content">
-                <div class="info-item">修改日期 : 2017/10/12</div>
-                <div class="info-item">類別 : JPG</div>
-                <div class="info-item">大小 : 466.97KB</div>
-                <div class="info-item">路徑 : \\designcenter.qnap.com.tw\DesignCenter\PM...</div>
+            <div class="info-list">
+                <div class="scroll-container">
+                    <div class="info-item">修改日期：2017/10/12</div>
+                    <div class="info-item">類別：JPG</div>
+                    <div class="info-item">大小：466.97KB</div>
+                    <div class="info-item">路徑：\\designcenter.qnap.com.tw\DesignCenter\PM...</div>
+                    <div class="info-item">解析度：450 x 240</div>
+                </div>
             </div>
         </div>
     </div>
@@ -110,12 +132,13 @@
         const btn = document.getElementById('toggleBtn');
         const panel = document.getElementById('infoPanel');
 
+        // 點擊事件監聽
         btn.addEventListener('click', () => {
-            // 切換面板的顯示/隱藏
-            panel.classList.toggle('active');
+            // 切換 panel 的顯示類別
+            panel.classList.toggle('show');
 
-            // 根據狀態切換按鈕文字 (對應設計稿右下角的「收起資訊」)
-            if (panel.classList.contains('active')) {
+            // 切換按鈕文字：對應右下角的「收起資訊」
+            if (panel.classList.contains('show')) {
                 btn.textContent = '收起資訊';
             } else {
                 btn.textContent = '查看資訊';
