@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 影像樣式練習</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* 共同樣式 */
+        img {
+            height: 300px; /* 圖片高度固定為 300px */
+        }
+
+        /* 左側圖片：圓角與不失真 */
+        .img-left {
+            width: 33%;
+            border-radius: 18px;
+            object-fit: cover; /* 關鍵：裁切以填滿容器，防止變形 */
+        }
+
+        /* 中間圖片：圓形與邊框 */
+        .img-middle {
+            width: 150px;
+            height: 150px; /* 寬高一致才能變正圓 */
+            border-radius: 50%;
+            border: 2px solid #333;
+            object-fit: cover; /* 關鍵：圓形頭像通常也要防止變形 */
+        }
+
+        /* 右側圖片：寬度 33% 與變形 */
+        .img-right {
+            width: 33%;
+            /* 預設行為：若只給寬高且沒設定 object-fit，圖片會被拉伸導致 distortion */
+        }
+    </style>
+</head>
+<body>
+
+    <img src="https://picsum.photos/id/43/800/1200" alt="Eiffel Tower" class="img-left">
+
+    <img src="https://picsum.photos/id/10/500/500" alt="Nature" class="img-middle">
+
+    <img src="https://picsum.photos/id/43/800/1200" alt="Eiffel Tower" class="img-right">
+
+</body>
+</html>
