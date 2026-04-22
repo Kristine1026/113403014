@@ -3,103 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>響應式佈局作業</title>
+    <title>Responsive Layout Task</title>
     <style>
-        /* 基礎設定 */
+        /* 基礎背景設定 */
         body {
             margin: 0;
             padding: 20px;
-            background-color: #58b2f1; /* 藍色背景 */
-            font-family: Arial, sans-serif;
+            background-color: #58b2f1; /* 藍色底色 */
             display: flex;
             justify-content: center;
+            font-family: sans-serif;
         }
 
-        .container {
+        /* 白色外容器 */
+        .card {
             background-color: white;
             padding: 20px;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 800px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 600px; /* 限制最大寬度方便觀察 */
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        /* 區塊通用樣式 */
-        .section {
-            margin-bottom: 10px;
-            border-radius: 4px;
-        }
-
-        /* 綠色頂部 */
+        /* 綠色區塊 (Header) */
         .header {
             background-color: #a8d64d;
-            height: 150px;
+            height: 120px;
             width: 100%;
         }
 
-        /* 中間藍綠色區塊容器 */
+        /* 中間藍綠色區塊 (Main) */
         .main-content {
             display: flex;
             gap: 10px;
-            flex-direction: row; /* 預設橫排 (b圖) */
+            /* 預設：寬螢幕時橫排 (圖b) */
+            flex-direction: row; 
         }
 
-        .content-box {
+        .box-cyan {
             background-color: #00bcd4;
             height: 150px;
             flex: 1; /* 平分寬度 */
         }
 
-        /* 底部灰色區塊容器 */
+        /* 底部灰色區塊 (Footer) */
         .footer {
             display: flex;
             gap: 10px;
-            margin-top: 10px;
         }
 
-        .footer-box {
+        .box-gray {
             background-color: #eceff1;
             height: 60px;
             flex: 1;
         }
 
-        /* --- 核心：媒體查詢 --- */
-        /* 當寬度小於 480px 時切換為 (a圖) 佈局 */
+        /* --- 關鍵：當寬度小於 480px 時 (圖a) --- */
         @media (max-width: 480px) {
             .main-content {
-                flex-direction: column; /* 變為直排 */
+                /* 強制改為垂直排列 */
+                flex-direction: column !important; 
             }
 
-            .content-box {
-                height: 80px; /* 直排時縮短高度以符合比例 */
+            .box-cyan {
+                height: 80px; /* 縮小高度符合手機視覺 */
             }
 
-            /* 底部灰色塊改為 2x2 或是維持比例 */
             .footer {
-                flex-wrap: wrap; 
+                /* 手機版底部也可以根據需求調整排列 */
+                flex-wrap: wrap;
             }
-            .footer-box {
-                flex: 1 1 calc(50% - 5px); /* 一列兩個 */
+            .box-gray {
+                flex: 1 1 40%; /* 讓它變成兩列兩排 */
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <div class="section header"></div>
+    <div class="card">
+        <div class="header"></div>
 
         <div class="main-content">
-            <div class="section content-box"></div>
-            <div class="section content-box"></div>
-            <div class="section content-box"></div>
+            <div class="box-cyan"></div>
+            <div class="box-cyan"></div>
+            <div class="box-cyan"></div>
         </div>
 
         <div class="footer">
-            <div class="section footer-box"></div>
-            <div class="section footer-box"></div>
-            <div class="section footer-box"></div>
-            <div class="section footer-box"></div>
+            <div class="box-gray"></div>
+            <div class="box-gray"></div>
+            <div class="box-gray"></div>
+            <div class="box-gray"></div>
         </div>
     </div>
 
