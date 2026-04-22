@@ -3,59 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Button Spec Implementation</title>
+    <title>NCU Web Exercise - Button Interaction</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     
     <style>
-        /* 基礎背景設定 */
         body {
-            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f6f6f6;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            height: 100vh;
-            background-color: #f6f6f6; /* 參考設計稿標註的 header bg color */
+            padding-top: 50px;
         }
 
-        /* 根據 Spec 製作的按鈕樣式 */
+        /* 預覽圖片容器 */
+        .preview-container {
+            width: 496px; /* 參考設計稿標註寬度 */
+            background: white;
+            border: 1px solid #ddd;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .main-image {
+            width: 100%;
+            height: 240px; /* 標註 450x240 */
+            object-fit: cover;
+            display: block;
+        }
+
+        /* 按鈕工具列 */
+        .toolbar {
+            display: flex;
+            justify-content: flex-end;
+            padding: 5px 10px;
+            background: #fff;
+        }
+
+        /* 核心按鈕樣式 (h22/R8) */
         .spec-button {
-            /* 尺寸與形狀：h22 / R8 */
             height: 22px;
             border-radius: 8px;
-            
-            /* 背景與邊框：background #ffffff / outline 1px #2f2f2f */
             background-color: #ffffff;
             border: 1px solid #2f2f2f;
-            
-            /* 字體樣式：Roboto Regular 13px / Color #2f2f2f */
-            font-family: 'Roboto', sans-serif;
             font-size: 13px;
             color: #2f2f2f;
-            font-weight: 400;
-            
-            /* 內部對齊與間距 */
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 10px; /* 根據文字長度手動微調左右邊距 */
-            
-            /* 其他互動設定 */
             cursor: pointer;
-            outline: none;
-            box-sizing: border-box; /* 確保 1px 邊框不會增加總高度 */
-            transition: background-color 0.2s;
-            line-height: 1;
+            padding: 0 12px;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
         }
 
-        /* 滑鼠懸停效果 (選配，增加操作感) */
         .spec-button:hover {
             background-color: #f0f0f0;
+        }
+
+        /* 資訊面板 - 初始狀態為隱藏 */
+        .info-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background: #ffffff;
+        }
+
+        /* 當 active 時展開 */
+        .info-panel.active {
+            max-height: 200px; /* 展開高度 */
+        }
+
+        .info-content {
+            padding: 10px 15px;
+            font-size: 12px;
+            color: #707070; /* 參考設計稿 Font style 顏色 */
+            border-top: 1px solid #eaeaea;
+        }
+
+        .info-item {
+            background: #90ee90; /* 模仿設計稿中的綠色條狀樣式 */
+            margin-bottom: 4px;
+            padding: 2px 8px;
+            color: #333;
         }
     </style>
 </head>
 <body>
 
-    <button class="spec-button">查看資訊</button>
+    <div class="preview-container">
+        <img src="https://picsum.photos/496/240" alt="Preview" class="main-image">
+        
+        <div class="toolbar">
+            <button class="spec-button" id="toggleBtn">查看資訊</button>
+        </div>
+
+        <div class="info-panel" id="infoPanel">
+            <div class="info-content">
+                <div class="info-item">修改日期 : 2017/10/12</div>
+                <div class="info-item">類別 : JPG</div>
+                <div class="info-item">大小 : 466.97KB</div>
+                <div class="info-item">路徑 : \\designcenter.qnap.com.tw\DesignCenter\PM...</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const btn = document.getElementById('toggleBtn');
+        const panel = document.getElementById('infoPanel');
+
+        btn.addEventListener('click', () => {
+            // 切換面板的顯示/隱藏
+            panel.classList.toggle('active');
+
+            // 根據狀態切換按鈕文字 (對應設計稿右下角的「收起資訊」)
+            if (panel.classList.contains('active')) {
+                btn.textContent = '收起資訊';
+            } else {
+                btn.textContent = '查看資訊';
+            }
+        });
+    </script>
 
 </body>
 </html>
